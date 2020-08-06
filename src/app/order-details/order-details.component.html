@@ -1,0 +1,56 @@
+<h2>Order Details</h2>
+<!-- *ngIf="cart$ | async as cart" -->
+<div class="row" *ngIf="order">
+    <div class="col-6">
+        <!-- <form #f="ngForm"> -->
+            <div class="form-group">
+                <label for="">Name:</label>
+                <label for="">{{order.shipping.name}}</label>
+                
+            </div>
+            <div class="form-group">
+                <label for="">Address:</label>
+                <label for="">{{order.shipping.addressLine1}}</label>
+               
+            </div>
+            <div class="form-group">
+                <label for=""></label>
+                <label for="">{{order.shipping.addressLine2}}</label>
+               
+            </div>
+            <div class="form-group">
+                <label for="">City:</label>
+                <label for="">{{order.shipping.city}}</label>
+               
+            </div>
+            <!-- <button 
+                [disabled]="!f.valid"
+                (click)="placeOrder()"
+                class="btn btn-primary">Place Order</button> -->
+        <!-- </form> -->
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Order Summary</h5>
+              <p class="card-text">You had {{totalItemsCount}} items in your shopping cart</p>
+              <ul class="list-group list-group-flush">
+                <!-- *ngFor="let item of cart.itemsArray" -->
+                  <li class="list-group-item" *ngFor="let item of order.items">
+                    {{item.quantity}} * {{item.product.title}}
+                    <div class="float-right">
+                        {{item.totalPrice | currency: 'USD':true}} 
+                    </div>
+                  </li>
+                  <li class="list-group-item font-weight-bold">
+                    Total  
+                    <div class="float-right">
+                        {{totalPrice | currency: 'USD': true}}
+                    </div>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        
+    </div>
+</div>
